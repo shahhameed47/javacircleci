@@ -1,33 +1,9 @@
 machine:
-  hosts:
-    localhost: 127.0.0.1
-version: 2
-jobs:
-  build:
-    
-    working_directory: /home/dellpc/shahul/learning/circleci/sampleapp
     java:
-    version: openjdk8
-    environment:
-      BASH_ENV: "~/.bashrc"
-    steps:
-      - run: echo '$PATH'
-      - checkout
-
-      - run: 
-          name: post checkout check
-          command: |
-            echo $PWD
-            echo 'export HOME="/home/dellpc"' >> $BASH_ENV
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: sampleapp-{{ checksum "pom.xml" }}
-      
-      - run: mvn clean install
-      
-      - store_test_results:
-          path: /home/dellpc/shahul/learning/circleci/sampleapp/target/surefire-reports
-      
-      - store_artifacts:
-          path: /home/dellpc/shahul/learning/circleci/sampleapp/target/sampleapp.jar    
+        version: openjdk8
+general:
+    artifacts:
+        - "target/java-demo.war"
+test:
+    post:
+        - mvn clean install
