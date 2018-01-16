@@ -7,7 +7,7 @@ jobs:
     version: openjdk8
 
     steps:
-
+      - run: echo '$PATH'
       - checkout
 
       - restore_cache:
