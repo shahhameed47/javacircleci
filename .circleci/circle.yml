@@ -3,7 +3,7 @@ machine:
     version: openjdk8
 general:
   artifacts:
-    - "target/java-demo.jar"
+    - "/home/dellpc/shahul/learning/circleci/sampleapp/target/java-demo.jar"
 test:
   post:
     - mvn clean install
