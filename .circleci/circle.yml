@@ -1,6 +1,7 @@
 machine:
   environment: 
-    HOME: /home/dellpc
+    BASH_ENV: ~/.bashrc
+    working_directory: /home/dellpc
   java:
     version: openjdk8
 general:
