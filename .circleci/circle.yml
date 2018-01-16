@@ -23,7 +23,7 @@ jobs:
       - run: mvn package
       
       - store_test_results:
-          path: target/surefire-reports
+          path: /home/dellpc/shahul/learning/circleci/sampleapp/target/surefire-reports
       
       - store_artifacts:
-          path: target/sampleapp.jar    
+          path: /home/dellpc/shahul/learning/circleci/sampleapp/target/sampleapp.jar    
