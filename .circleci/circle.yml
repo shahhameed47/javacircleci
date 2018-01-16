@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     
-    working_directory: /home/dellpc/shahul/learning/circleci/sampleapp
+    working_directory: ~/shahul/learning/circleci/sampleapp
     java:
     version: openjdk8
 
@@ -23,7 +23,7 @@ jobs:
       - run: mvn package
       
       - store_test_results:
-          path: /home/dellpc/shahul/learning/circleci/sampleapp/target/surefire-reports
+          path: ~/shahul/learning/circleci/sampleapp/target/surefire-reports
       
       - store_artifacts:
-          path: /home/dellpc/shahul/learning/circleci/sampleapp/target/sampleapp.jar    
+          path: ~/shahul/learning/circleci/sampleapp/target/sampleapp.jar    
