@@ -1,7 +1,7 @@
 machine:
   environment: 
     BASH_ENV: ~/.bashrc
-    working_directory: /home/dellpc
+    working_directory: /home/dellpca
   java:
     version: openjdk8
 general:
@@ -10,3 +10,33 @@ general:
 test:
   post:
     - mvn clean install
+
+version: 2
+jobs:
+  build:
+    
+    working_directory: /home/dellpc/shahul/learning/circleci/sampleapp
+    java:
+    version: openjdk8
+
+    steps:
+
+      - checkout
+
+      - restore_cache:
+          key: sampleapp-{{ checksum "pom.xml" }}
+      
+      - run: mvn dependency:go-offline
+      
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: sampleapp-{{ checksum "pom.xml" }}
+      
+      - run: mvn package
+      
+      - store_test_results:
+          path: target/surefire-reports
+      
+      - store_artifacts:
+          path: target/sampleapp.jar    
