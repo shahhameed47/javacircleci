@@ -1,4 +1,6 @@
 machine:
+  environment: 
+    HOME: /home/dellpc
   java:
     version: openjdk8
 general:
