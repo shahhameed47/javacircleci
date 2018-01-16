@@ -5,18 +5,17 @@ jobs:
     working_directory: /home/dellpc/shahul/learning/circleci/sampleapp
     java:
     version: openjdk8
-
+    environment:
+      BASH_ENV: "~/.bashrc"
     steps:
       - run: echo '$PATH'
       - checkout
 
-      - restore_cache:
-          key: sampleapp-{{ checksum "pom.xml" }}
-      
       - run: 
           name: post checkout check
           command: |
             echo $PWD
+            echo 'export HOME="/home/dellpc"' >> $BASH_ENV
       - save_cache:
           paths:
             - ~/.m2
