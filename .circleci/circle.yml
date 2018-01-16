@@ -1,16 +1,3 @@
-machine:
-  environment: 
-    BASH_ENV: ~/.bashrc
-    working_directory: /home/dellpca
-  java:
-    version: openjdk8
-general:
-  artifacts:
-    - "/home/dellpc/shahul/learning/circleci/sampleapp/target/java-demo.jar"
-test:
-  post:
-    - mvn clean install
-
 version: 2
 jobs:
   build:
