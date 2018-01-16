@@ -1,3 +1,6 @@
+machine:
+  hosts:
+    localhost: 127.0.0.1
 version: 2
 jobs:
   build:
