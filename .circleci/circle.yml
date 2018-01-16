@@ -4,6 +4,10 @@ machine:
 general:
     artifacts:
         - "target/java-demo.war"
+dependencies:
+  override:
+    - mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline
+
 test:
-    post:
-        - mvn clean install
+  override:
+    - mvn -o surefire:test
