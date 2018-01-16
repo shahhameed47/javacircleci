@@ -1,22 +1,30 @@
 version: 2
 jobs:
   build:
+    
+    working_directory: ~/javacircleci
+
     docker:
       - image: circleci/openjdk:8-jdk-browsers
 
-    working_directory: /tmp
     steps:
+
       - checkout
-      - run:
-          name: Creating Dummy Artifacts
-          command: |
-            echo "my artifact file" > /tmp/artifact-1;
-            mkdir /tmp/artifacts;
-            echo "my artifact files in a dir" > /tmp/artifacts/artifact-2;
 
+      - restore_cache:
+          key: javacircleci-{{ checksum "pom.xml" }}
+      
+      - run: mvn dependency:go-offline
+      
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: javacircleci-{{ checksum "pom.xml" }}
+      
+      - run: mvn package
+      
+      - store_test_results:
+          path: target/surefire-reports
+      
       - store_artifacts:
-          path: /tmp/artifact-1
-          destination: artifact-file
-
-      - store_artifacts:
-          path: /tmp/artifacts
+          path: target/javacircleci-SNAPSHOT.jar
